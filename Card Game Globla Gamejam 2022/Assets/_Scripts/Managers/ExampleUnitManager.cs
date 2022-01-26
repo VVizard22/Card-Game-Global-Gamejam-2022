@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class ExampleUnitManager : Singleton<ExampleUnitManager>
 {
+    /*
     public void SpawnHeroes(){
         SpawnUnit(ExampleHeroType.Hero0, new Vector3(1, 0, 0));
     }
@@ -20,5 +21,5 @@ public class ExampleUnitManager : Singleton<ExampleUnitManager>
         stats.Health += 20;
 
         spawned.SetStats(stats);
-    }
+    }*/
 }

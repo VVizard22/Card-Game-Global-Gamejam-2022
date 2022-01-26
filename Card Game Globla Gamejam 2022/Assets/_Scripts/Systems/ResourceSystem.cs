@@ -9,18 +9,61 @@ using UnityEngine;
 public class ResourceSystem : Singleton<ResourceSystem>
 {
     
-    public List<ScriptableExampleHero> ExampleHeroes { get; private set; }
-    private Dictionary<ExampleHeroType, ScriptableExampleHero> _ExampleHeroesDict;
+    public List<CardBase> _cardsList { get; private set; }
+    public List<CardBase> _techList { get; private set; }
+    public List<CardBase> _magicList { get; private set; }
+    private Dictionary<string, CardBase> _magicCardsDict;
+    private Dictionary<string, CardBase> _techCardsDict;
     protected override void Awake(){
         base.Awake();
+        _techList = new List<CardBase>();
+        _magicList = new List<CardBase>();
+        _magicCardsDict = new Dictionary<string, CardBase>();
+        _techCardsDict = new Dictionary<string, CardBase>();
         AssembleResources();
     }
 
     private void AssembleResources(){
-        ExampleHeroes = Resources.LoadAll<ScriptableExampleHero>("ExampleHeroes").ToList();
-        _ExampleHeroesDict = ExampleHeroes.ToDictionary(r => r.HeroType, r => r);
+        _cardsList = Resources.LoadAll<CardBase>("Cards").ToList();
+        foreach(CardBase _card in _cardsList){
+            switch (_card._cardType){
+                case CardType.Magic:
+                    _magicCardsDict.Add(_card._cardName, _card);
+                    _magicList.Add(_card);
+                    break;
+                case CardType.Tech:
+                    _techCardsDict.Add(_card._cardName, _card);
+                    _techList.Add(_card);
+                    break;
+            }
+        }
+        DisplayDictionary();
     }
 
-    public ScriptableExampleHero GetExampleHero(ExampleHeroType t) => _ExampleHeroesDict[t];
-    public ScriptableExampleHero GetRandomHero() => ExampleHeroes[Random.Range(0, ExampleHeroes.Count)];
+    public CardBase GetCard(string cardName){
+        CardBase cardReturn = null;
+        if(_techCardsDict.ContainsKey(cardName))
+            cardReturn = _techCardsDict[cardName];
+        if(cardReturn == null && _magicCardsDict.ContainsKey(cardName))
+            cardReturn = _magicCardsDict[cardName];
+        return cardReturn;
+    }
+
+    public CardBase GetRandomTechCard() => _techList[Random.Range(0, _techList.Count)];
+    public CardBase GetRandomMagicCard() => _magicList[Random.Range(0, _techList.Count)];
+
+
+    //Metodo para testeo de diccionarios
+    private void DisplayDictionary(){
+        Debug.Log("Tech dict");
+        foreach(CardBase card in _techCardsDict.Values){
+            Debug.Log(card._cardName);
+        }
+        
+        Debug.Log("Magic Dict");
+        foreach(CardBase card in _magicCardsDict.Values){
+            Debug.Log(card._cardName);
+        }
+    }
 }
+

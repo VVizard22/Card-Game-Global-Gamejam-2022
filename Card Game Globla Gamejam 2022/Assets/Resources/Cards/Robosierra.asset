@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb3350a4f8818f244b29be498d4ae480, type: 3}
-  m_Name: Hero0
+  m_Script: {fileID: 11500000, guid: edfc49625e2629e4da2e1be847ad91a4, type: 3}
+  m_Name: Robosierra
   m_EditorClassIdentifier: 
-  faction: 0
+  _cardType: 1
+  _cardNature: 0
+  _cardName: Robosierra
+  _cardDescription: 
   _stats:
-    Health: 0
-    AttackPower: 0
-  Prefab: {fileID: 0}
-  Description: 
-  MenuSprite: {fileID: 0}
-  HeroType: 0
+    Health: 2
+    AttackPower: 2
+  _cardSprite: {fileID: 0}

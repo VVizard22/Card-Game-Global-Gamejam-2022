@@ -11,19 +11,19 @@ C:\Program Files\Unity\Hub\Editor\2020.3.25f1\Editor\Unity.exe
 -name
 AssetImportWorker3
 -projectPath
-C:/Users/dante/Desktop/Unity Projects/Base-Project/Base Project
+C:/Users/dante/Desktop/Unity Projects/Card-Game-Global-Gamejam-2022/Card Game Globla Gamejam 2022
 -logFile
 Logs/AssetImportWorker3.log
 -srvPort
-64537
-Successfully changed project path to: C:/Users/dante/Desktop/Unity Projects/Base-Project/Base Project
-C:/Users/dante/Desktop/Unity Projects/Base-Project/Base Project
+60183
+Successfully changed project path to: C:/Users/dante/Desktop/Unity Projects/Card-Game-Global-Gamejam-2022/Card Game Globla Gamejam 2022
+C:/Users/dante/Desktop/Unity Projects/Card-Game-Global-Gamejam-2022/Card Game Globla Gamejam 2022
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 275.24 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 573.66 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.25f1 (9b9180224418)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/dante/Desktop/Unity Projects/Base-Project/Base Project/Assets
+[Subsystems] Discovering subsystems at path C:/Users/dante/Desktop/Unity Projects/Card-Game-Global-Gamejam-2022/Card Game Globla Gamejam 2022/Assets
 GfxDevice: creating device client; threaded=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
@@ -35,48 +35,48 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56784
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56632
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.25f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.013555 seconds.
+Registered in 0.019881 seconds.
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 201.83 ms, found 2 plugins.
+Refreshing native plugins compatible for Editor in 339.84 ms, found 2 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  2.813 seconds
+- Completed reload, in  3.826 seconds
 Domain Reload Profiling:
-	ReloadAssembly (2814ms)
-		BeginReloadAssembly (350ms)
+	ReloadAssembly (3826ms)
+		BeginReloadAssembly (299ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (2ms)
-		EndReloadAssembly (2052ms)
-			LoadAssemblies (350ms)
+		EndReloadAssembly (3113ms)
+			LoadAssemblies (287ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (657ms)
+			SetupTypeCache (908ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (176ms)
-			SetupLoadedEditorAssemblies (754ms)
+			RebuildScriptCaches (256ms)
+			SetupLoadedEditorAssemblies (1523ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (33ms)
-				SetLoadedEditorAssemblies (3ms)
-				RefreshPlugins (202ms)
-				BeforeProcessingInitializeOnLoad (39ms)
-				ProcessInitializeOnLoadAttributes (350ms)
-				ProcessInitializeOnLoadMethodAttributes (126ms)
+				InitializePlatformSupportModulesInManaged (87ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (341ms)
+				BeforeProcessingInitializeOnLoad (66ms)
+				ProcessInitializeOnLoadAttributes (714ms)
+				ProcessInitializeOnLoadMethodAttributes (313ms)
 				AfterProcessingInitializeOnLoad (0ms)
-				EditorAssembliesLoaded (1ms)
+				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.025008 seconds.
+Registered in 0.031643 seconds.
