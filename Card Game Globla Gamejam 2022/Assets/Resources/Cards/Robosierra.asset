@@ -18,5 +18,5 @@ MonoBehaviour:
   _cardDescription: 
   _stats:
     Health: 2
-    AttackPower: 2
-  _cardSprite: {fileID: 0}
+    AttackPower: 5
+  _cardSprite: {fileID: 21300000, guid: b578532cd7b737d4bac9396b20e45065, type: 3}

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 600dedd2b2c20da4a8397b7493558f6d
+guid: 45c23e5aa4055d24e9b24a190b3abe09
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1680550187679815687
-    second: Vidente_0
+      213: 1545180855835002532
+    second: Hombre Lobo_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -142,7 +142,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vidente_0
+      name: Hombre Lobo_0
       rect:
         serializedVersion: 2
         x: 440
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f7e02c128c7da8e0800000000000000
-      internalID: -1680550187679815687
+      spriteID: 4a687c93dc5917510800000000000000
+      internalID: 1545180855835002532
       vertices: []
       indices: 
       edges: []
@@ -165,7 +165,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d56f33682138df7498ab41c933472bcd
+    spriteID: fc7fae9166f45d643b2d143d4041f7ed
     internalID: 0
     vertices: []
     indices: 

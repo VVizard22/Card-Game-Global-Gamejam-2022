@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 600dedd2b2c20da4a8397b7493558f6d
+guid: 0f9aa5bfd325339408fa07cf2fd9b06a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1680550187679815687
-    second: Vidente_0
+      213: 5119497472603384332
+    second: carta magia_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,7 +50,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 438, y: 243, z: 440, w: 243}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -142,7 +142,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vidente_0
+      name: carta magia_0
       rect:
         serializedVersion: 2
         x: 440
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f7e02c128c7da8e0800000000000000
-      internalID: -1680550187679815687
+      spriteID: c0ae80bb3db1c0740800000000000000
+      internalID: 5119497472603384332
       vertices: []
       indices: 
       edges: []
@@ -165,7 +165,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d56f33682138df7498ab41c933472bcd
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 

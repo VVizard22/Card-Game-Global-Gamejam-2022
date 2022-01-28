@@ -17,7 +17,7 @@ public class CardBase : ScriptableObject
     public Sprite _cardSprite;
 
     public CardBase Duplicate(){
-        CardBase toReturn = new CardBase();
+        CardBase toReturn = CreateInstance<CardBase>();
         
         toReturn._cardType = _cardType;
         toReturn._cardName = _cardName;

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edfc49625e2629e4da2e1be847ad91a4, type: 3}
-  m_Name: Vidente
+  m_Name: Hombre lobo
   m_EditorClassIdentifier: 
   _cardType: 0
   _cardNature: 0
-  _cardName: Vidente
+  _cardName: Hombre Lobo
   _cardDescription: 
   _stats:
-    Health: 1
-    AttackPower: 1
-  _cardSprite: {fileID: -1680550187679815687, guid: 600dedd2b2c20da4a8397b7493558f6d, type: 3}
+    Health: -1
+    AttackPower: 2
+  _cardSprite: {fileID: 1545180855835002532, guid: 45c23e5aa4055d24e9b24a190b3abe09, type: 3}

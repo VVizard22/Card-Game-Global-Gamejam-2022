@@ -11,12 +11,26 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
     public static event Action<GameState> OnAfterStateChanged;
     public GameState State { get; private set; }
 
+    [SerializeField] private GameObject FusionScene;
+
 
     public delegate void GameplayPauseHandler(PauseState newPauseState);
     public event GameplayPauseHandler OnGamePauseStateChanged;
     public PauseState pauseState { get; private set; } = PauseState.Play;
 
-    void Start() => ChangeState(GameState.Starting);
+    void Start() {
+        SlotBehaviour.StartFusing += StartFusing;
+        ChangeState(GameState.Starting);
+    }
+
+    void OnDestroy()
+    {
+        SlotBehaviour.StartFusing -= StartFusing;        
+    }
+
+    void StartFusing(GameObject card){
+
+    }
 
     public void ChangePauseState(){
         switch (pauseState){
@@ -43,13 +57,14 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
             case GameState.Starting:
                 HandleStarting();
                 break;
-            case GameState.SpawningHeroes:
+            case GameState.Draw:
                 break;
-            case GameState.SpawningEnemies:
+            case GameState.CardSelect:
                 break;
-            case GameState.HeroTurn:
+            case GameState.Fusion:
+                HandleFusion();
                 break;
-            case GameState.EnemyTurn:
+            case GameState.Damage:
                 break;
             case GameState.Win:
                 break;
@@ -65,8 +80,11 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
 
     private void HandleStarting(){
         //Hacer un setup de inicio, sea enviroment, cinematicas, etc.
-
         //Eventualmente llamar el metoda ChangeState de nuevo con el proximo estado
+    }
+
+    private void HandleFusion(){
+        FusionScene.SetActive(true);
     }
 }
 
@@ -77,14 +95,13 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
 /// </summary>
 [Serializable]
 public enum GameState {
-    Nothing,
-    Starting = 0,
-    SpawningHeroes = 1,
-    SpawningEnemies = 2,
-    HeroTurn = 3,
-    EnemyTurn = 4,
-    Win = 5,
-    Lose = 6
+    Starting,
+    Draw,
+    CardSelect,
+    Fusion,
+    Damage,
+    Win,
+    Lose
 }
 
 [Serializable]

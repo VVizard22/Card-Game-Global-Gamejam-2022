@@ -37,7 +37,7 @@ public class ResourceSystem : Singleton<ResourceSystem>
                     break;
             }
         }
-        DisplayDictionary();
+        //DisplayDictionary();
     }
 
     public CardBase GetCard(string cardName){

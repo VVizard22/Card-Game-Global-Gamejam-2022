@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 600dedd2b2c20da4a8397b7493558f6d
+guid: c16c311b7298d4b4ea3bafe27adff71e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1680550187679815687
-    second: Vidente_0
+      213: -1223637028338241767
+    second: carta dorso_0
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -142,7 +142,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Vidente_0
+      name: carta dorso_0
       rect:
         serializedVersion: 2
         x: 440
@@ -156,8 +156,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f7e02c128c7da8e0800000000000000
-      internalID: -1680550187679815687
+      spriteID: 91f62e71b94c40fe0800000000000000
+      internalID: -1223637028338241767
       vertices: []
       indices: 
       edges: []
@@ -165,7 +165,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d56f33682138df7498ab41c933472bcd
+    spriteID: 5413cf6dfebb7664287ea401b527a2b7
     internalID: 0
     vertices: []
     indices: 

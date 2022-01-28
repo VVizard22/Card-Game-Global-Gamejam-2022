@@ -13,7 +13,9 @@ public class DecksManager : Singleton<DecksManager>
     };
 
     public Dictionary<string, int> MagicDeck { get; private set; } = new Dictionary<string, int>(){
-        {"Vidente", 6}
+        {"Hombre Lobo", 3},
+        {"Vidente", 3},
+        {"Hechicero", 3}
     };
 
     public void RemoveCard(string name, int amount){

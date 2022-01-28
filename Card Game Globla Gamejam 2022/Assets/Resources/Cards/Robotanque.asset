@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edfc49625e2629e4da2e1be847ad91a4, type: 3}
-  m_Name: Vidente
+  m_Name: Robotanque
   m_EditorClassIdentifier: 
-  _cardType: 0
+  _cardType: 1
   _cardNature: 0
-  _cardName: Vidente
+  _cardName: Robotanque
   _cardDescription: 
   _stats:
-    Health: 1
+    Health: 6
     AttackPower: 1
-  _cardSprite: {fileID: -1680550187679815687, guid: 600dedd2b2c20da4a8397b7493558f6d, type: 3}
+  _cardSprite: {fileID: 9214235396929380380, guid: 50f89ccf22ed3e6418309800f248f7b9, type: 3}

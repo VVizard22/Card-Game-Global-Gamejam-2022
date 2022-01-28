@@ -1,10 +1,7 @@
 fileFormatVersion: 2
-guid: 600dedd2b2c20da4a8397b7493558f6d
+guid: f2ab86cd078bb614eae0b50254d885ec
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: -1680550187679815687
-    second: Vidente_0
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -44,7 +41,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -140,32 +137,11 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Vidente_0
-      rect:
-        serializedVersion: 2
-        x: 440
-        y: 244
-        width: 620
-        height: 1011
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9f7e02c128c7da8e0800000000000000
-      internalID: -1680550187679815687
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d56f33682138df7498ab41c933472bcd
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
