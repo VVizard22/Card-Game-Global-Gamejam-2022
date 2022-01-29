@@ -19,4 +19,9 @@ public class CardCreation : MonoBehaviour
         HP.text = _cardData._baseStats.Health.ToString();
         DMG.text = _cardData._baseStats.AttackPower.ToString();
     }
+    
+    public void UpdateCardFusionData(){
+        HP.text = _cardData._fusionStats.Health.ToString();
+        DMG.text = _cardData._fusionStats.AttackPower.ToString();
+    }
 }

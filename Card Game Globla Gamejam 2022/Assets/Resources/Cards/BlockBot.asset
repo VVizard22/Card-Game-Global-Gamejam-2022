@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: edfc49625e2629e4da2e1be847ad91a4, type: 3}
-  m_Name: Robotanque
+  m_Name: BlockBot
   m_EditorClassIdentifier: 
   _cardType: 1
   _cardNature: 0
-  _cardName: Robotanque
+  _cardName: BlockBot
   _cardDescription: 
   _stats:
-    Health: 6
-    AttackPower: 1
-  _cardSprite: {fileID: 9214235396929380380, guid: 50f89ccf22ed3e6418309800f248f7b9, type: 3}
+    Health: 5
+    AttackPower: 2
+  _fusionFormStats:
+    Health: 3
+    AttackPower: -2
+  _cardSprite: {fileID: 21300000, guid: 542dc284e0024f64499333cc529c26e8, type: 3}

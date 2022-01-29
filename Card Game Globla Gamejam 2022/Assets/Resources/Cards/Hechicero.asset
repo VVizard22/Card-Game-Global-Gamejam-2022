@@ -18,5 +18,8 @@ MonoBehaviour:
   _cardDescription: 
   _stats:
     Health: 2
-    AttackPower: -1
+    AttackPower: 2
+  _fusionFormStats:
+    Health: 3
+    AttackPower: -2
   _cardSprite: {fileID: 5598914986514296317, guid: 580ece977d324b74ebe0ae5afe262afb, type: 3}

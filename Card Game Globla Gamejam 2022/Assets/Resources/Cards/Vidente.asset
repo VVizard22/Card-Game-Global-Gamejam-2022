@@ -17,6 +17,9 @@ MonoBehaviour:
   _cardName: Vidente
   _cardDescription: 
   _stats:
+    Health: 3
+    AttackPower: 3
+  _fusionFormStats:
     Health: 1
     AttackPower: 1
   _cardSprite: {fileID: -1680550187679815687, guid: 600dedd2b2c20da4a8397b7493558f6d, type: 3}

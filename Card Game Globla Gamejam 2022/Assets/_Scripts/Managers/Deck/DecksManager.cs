@@ -8,8 +8,8 @@ using UnityEngine;
 public class DecksManager : Singleton<DecksManager>
 {
     public Dictionary<string, int> TechDeck { get; private set; } = new Dictionary<string, int>(){
-        {"Robosierra", 3},
-        {"Robotanque", 3}
+        {"StanBot", 3},
+        {"BlockBot", 3}
     };
 
     public Dictionary<string, int> MagicDeck { get; private set; } = new Dictionary<string, int>(){

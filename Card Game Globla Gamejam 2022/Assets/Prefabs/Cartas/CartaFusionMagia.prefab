@@ -146,11 +146,11 @@ GameObject:
   - component: {fileID: 540625700078606629}
   - component: {fileID: 5444033541349366403}
   - component: {fileID: 8734144849254498664}
-  - component: {fileID: 5470361274540248394}
   - component: {fileID: 4525690180076875032}
+  - component: {fileID: -4282025375286050697}
   m_Layer: 0
-  m_Name: CartaMagia
-  m_TagString: Untagged
+  m_Name: CartaFusionMagia
+  m_TagString: FusionCard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5598914986514296317, guid: 580ece977d324b74ebe0ae5afe262afb, type: 3}
+  m_Sprite: {fileID: 5119497472603384332, guid: 0f9aa5bfd325339408fa07cf2fd9b06a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -229,18 +229,6 @@ MonoBehaviour:
   _artwork: {fileID: 5444033541349366403}
   HP: {fileID: 5968969688654850271}
   DMG: {fileID: 6590560249711001002}
---- !u!114 &5470361274540248394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4550028476248180246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c88d5c78e94d40b478758dfa916abbe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!225 &4525690180076875032
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -253,6 +241,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &-4282025375286050697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4550028476248180246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac2c0cb75eefd544f93514fa5ed7ab9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5326972148950674359
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _cardType: 1
   _cardNature: 0
-  _cardName: Robosierra
+  _cardName: StanBot
   _cardDescription: 
   _stats:
     Health: 2
     AttackPower: 5
+  _fusionFormStats:
+    Health: -2
+    AttackPower: 3
   _cardSprite: {fileID: 21300000, guid: b578532cd7b737d4bac9396b20e45065, type: 3}

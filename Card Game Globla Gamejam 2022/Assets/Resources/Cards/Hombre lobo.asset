@@ -17,6 +17,9 @@ MonoBehaviour:
   _cardName: Hombre Lobo
   _cardDescription: 
   _stats:
-    Health: -1
-    AttackPower: 2
+    Health: 2
+    AttackPower: 4
+  _fusionFormStats:
+    Health: -2
+    AttackPower: 3
   _cardSprite: {fileID: 1545180855835002532, guid: 45c23e5aa4055d24e9b24a190b3abe09, type: 3}

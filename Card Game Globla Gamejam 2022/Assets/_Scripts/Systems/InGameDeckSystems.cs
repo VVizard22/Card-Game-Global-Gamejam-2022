@@ -14,8 +14,12 @@ public class InGameDeckSystems : MonoBehaviour
     private DeckClass _magicDeck;
     private DeckClass _techDeck;
 
+    public CardBehaviour[] _currentHand { get; private set; }
+    int handCounter = 0;
+
     void Start()
     {
+        _currentHand = new CardBehaviour[6];
         _techDeck = new DeckClass(DecksManager.Instance.TechDeck);
         _magicDeck = new DeckClass(DecksManager.Instance.MagicDeck);
         TurnDraw();
@@ -53,6 +57,8 @@ public class InGameDeckSystems : MonoBehaviour
                 cardCreated.GetComponent<CardBehaviour>().SetCanvas(_playArea.GetComponent<Canvas>());
                 cardCreated.transform.SetParent(_playArea.transform);
                 CheckEmptySpace(cardCreated);
+                _currentHand[handCounter] = cardCreated.GetComponent<CardBehaviour>();
+                handCounter++;
                 break;
             case CardType.Tech:
                 cardCreated = Instantiate(_techCard, _tDeckTransform.position, Quaternion.identity);
@@ -60,6 +66,8 @@ public class InGameDeckSystems : MonoBehaviour
                 cardCreated.GetComponent<CardBehaviour>().SetCanvas(_playArea.GetComponent<Canvas>());
                 cardCreated.transform.SetParent(_playArea.transform);
                 CheckEmptySpace(cardCreated);
+                _currentHand[handCounter] = cardCreated.GetComponent<CardBehaviour>();
+                handCounter++;
                 break;
         }
     }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - LoaderCanvas
   - LoadingProgress
+  - FusionCard
   layers:
   - Default
   - TransparentFX

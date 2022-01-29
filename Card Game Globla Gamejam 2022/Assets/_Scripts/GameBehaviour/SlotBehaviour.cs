@@ -25,10 +25,11 @@ public class SlotBehaviour : MonoBehaviour, IDropHandler
                 ManageFusion(current);
             }
 
-            if(current.GetComponent<CardBehaviour>() != null && current.GetComponent<CardBehaviour>()._slotAssignedTo != null)
+            if(current.GetComponent<CardBehaviour>() != null && current.GetComponent<CardBehaviour>()._slotAssignedTo != null && !CombatSlot){
                 current.GetComponent<CardBehaviour>()._slotAssignedTo.gameObject.GetComponent<SlotBehaviour>().EmptySlot();
-            FillSlot(eventData.pointerDrag.gameObject);
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = anchoredPos;
+                FillSlot(eventData.pointerDrag.gameObject);
+                eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = anchoredPos;
+            }
         }
     }
 

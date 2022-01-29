@@ -11,6 +11,7 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
     public static event Action<GameState> OnAfterStateChanged;
     public GameState State { get; private set; }
 
+    [SerializeField] private GameObject CombatSlot;
     [SerializeField] private GameObject FusionScene;
 
 
@@ -20,16 +21,35 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
 
     void Start() {
         SlotBehaviour.StartFusing += StartFusing;
+        FusionBehaviour.finishFusion += FinishingFusion;
         ChangeState(GameState.Starting);
     }
 
     void OnDestroy()
     {
+        FusionBehaviour.finishFusion -= FinishingFusion;
         SlotBehaviour.StartFusing -= StartFusing;        
     }
 
-    void StartFusing(GameObject card){
+    void FinishingFusion(GameObject _originalFusing, GameObject _secondaryFusing){
+        _originalFusing.GetComponent<CardBehaviour>()._slotAssignedTo.GetComponent<SlotBehaviour>().EmptySlot();
+        CombatSlot.GetComponent<SlotBehaviour>().FillSlot(_originalFusing);
+        CardCreation originalData = _originalFusing.GetComponent<CardCreation>();
+        CardCreation secondaryData = _secondaryFusing.GetComponent<CardCreation>();
 
+        originalData._cardData.SetStats(secondaryData._cardData._fusionStats.Health, secondaryData._cardData._fusionStats.AttackPower);
+        originalData.UpdateCardData();
+        
+        _secondaryFusing.GetComponent<CardBehaviour>()._slotAssignedTo.GetComponent<SlotBehaviour>().EmptySlot();
+
+        _originalFusing.GetComponent<CardBehaviour>().ReturnPosition();
+        Destroy(_secondaryFusing);
+        FusionScene.SetActive(false);
+    }
+
+    void StartFusing(GameObject card){
+        FusionScene.GetComponent<FusionBehaviour>().SetFusionCard(card);
+        ChangeState(GameState.Fusion);
     }
 
     public void ChangePauseState(){
@@ -85,6 +105,7 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
 
     private void HandleFusion(){
         FusionScene.SetActive(true);
+        //FusionScene.transform.SetAsLastSibling();
     }
 }
 

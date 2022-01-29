@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6037558294123694949}
   - component: {fileID: 3054235441727636518}
   - component: {fileID: 6555095346740344741}
-  - component: {fileID: 3011142170918761094}
+  - component: {fileID: 2369735437305811136}
   m_Layer: 0
   m_Name: HandSlot
   m_TagString: Untagged
@@ -59,14 +59,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4528302, g: 0.4528302, b: 0.4528302, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8818429711740928618, guid: 0970589f8e1afae4eaabb557ae03724f, type: 3}
+  m_Sprite: {fileID: -5217298625821537229, guid: 1df584f1406205c4bb06c131f695e8dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3011142170918761094
+--- !u!114 &2369735437305811136
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,3 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5faf11a20b793643ad503a526bcb3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CombatSlot: 0
