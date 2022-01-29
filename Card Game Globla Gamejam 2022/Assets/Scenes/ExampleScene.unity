@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f5a5cea43a2b614b9815191b62ae141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CombatSlot: {fileID: 579718744}
   FusionScene: {fileID: 1379190389}
 --- !u!114 &335220289
 MonoBehaviour:
@@ -602,6 +603,11 @@ PrefabInstance:
     - {fileID: 5531346639156535573, guid: d9c920e9623cec747be0ba8371aafd24, type: 3}
     - {fileID: 5531346639145100822, guid: d9c920e9623cec747be0ba8371aafd24, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d9c920e9623cec747be0ba8371aafd24, type: 3}
+--- !u!1 &579718744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6784783256078242515, guid: 8cb48b97f65028e4ebb44959dc120f15, type: 3}
+  m_PrefabInstance: {fileID: 1750990732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &678998439 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3414420083636616420, guid: 3cf1c5d9996dee541a7770f6eba64154, type: 3}
@@ -1350,6 +1356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f568e9497e7a34fb3579131ad53f85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _confirmFussionButton: {fileID: 1712949122}
   _fusionCanvas: {fileID: 1379190389}
   _hand: {fileID: 335220289}
   mainFusion: {fileID: 1144067339}
@@ -1357,8 +1364,8 @@ MonoBehaviour:
   - {fileID: 1192992214}
   - {fileID: 1449493690}
   - {fileID: 207692267}
-  FusionPrefab: {fileID: 4550028476248180246, guid: 04b8cc81bdd5f5c4285806fbcf1229ee, type: 3}
-  _originalCardToFuse: {fileID: 0}
+  FusionPrefabMagic: {fileID: 4550028476248180246, guid: 04b8cc81bdd5f5c4285806fbcf1229ee, type: 3}
+  FusionPrefabTech: {fileID: 4550028476248180246, guid: 37ed9848840407844a60af978a272fb6, type: 3}
 --- !u!1001 &1412476694
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1826,7 +1833,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1712949123}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1379190394}
+        m_TargetAssemblyTypeName: FusionBehaviour, Assembly-CSharp
+        m_MethodName: FusingSuccesfull
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1712949123
 MonoBehaviour:
   m_ObjectHideFlags: 0
