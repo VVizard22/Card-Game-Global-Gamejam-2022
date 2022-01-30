@@ -15,14 +15,51 @@ public class InGameDeckSystems : MonoBehaviour
     private DeckClass _techDeck;
 
     public CardBehaviour[] _currentHand { get; private set; }
-    int handCounter = 0;
 
-    void Start()
+
+    void OnDestroy()
+    {
+        ExampleGameManager.OnBeforeStateChanged -= CheckGameState;
+        CardBehaviour.OnCardDeath -= DeathActions;
+        //SlotBehaviour.OnEmptyingSlot -= DecreaseHandCounter;
+    }
+
+    void CheckGameState(GameState state){
+        if(state == GameState.Draw)
+            TurnDraw();
+    }
+
+    void Awake()
     {
         _currentHand = new CardBehaviour[6];
         _techDeck = new DeckClass(DecksManager.Instance.TechDeck);
         _magicDeck = new DeckClass(DecksManager.Instance.MagicDeck);
-        TurnDraw();
+        ExampleGameManager.OnBeforeStateChanged += CheckGameState;
+        CardBehaviour.OnCardDeath += DeathActions;
+        //SlotBehaviour.OnEmptyingSlot += DecreaseHandCounter;
+    }
+
+    void DeathActions(GameObject card){
+        //DiscardCard(card);
+        DecreaseHandCounter(card);
+    }
+
+    /*
+    void DiscardCard(GameObject card){
+        if(card.GetComponent<CardBehaviour>()._cardData._cardType == CardType.Magic)
+            _magicDeck.SendToDiscardPile(card.GetComponent<CardBehaviour>()._cardData);
+        else
+            _techDeck.SendToDiscardPile(card.GetComponent<CardBehaviour>()._cardData);
+    }*/
+
+    void DecreaseHandCounter(GameObject card){
+        bool done = false;
+        for(int i = 0; i < _currentHand.Length && !done; i++){
+            if(_currentHand[i] == card.GetComponent<CardBehaviour>()){
+                _currentHand[i] = null;
+                done = true;
+            }
+        }
     }
 
     public void DrawMagicCard(){
@@ -40,15 +77,22 @@ public class InGameDeckSystems : MonoBehaviour
     }
 
     void TurnDraw(){
-        for(int i = 0; i < 3; i++){
-            DrawTechCard();
+        foreach(SlotBehaviour slot in _slots){
+            if(slot.GetSlotType() == CardType.Magic && slot._objectAttatched == null)
+                DrawMagicCard();
+            else if(slot.GetSlotType() == CardType.Tech && slot._objectAttatched == null)
+                DrawTechCard();
         }
-        for(int i = 0; i < 3; i++){
-            DrawMagicCard();
+    }
+
+    void UpdateCurrentHand(){
+        foreach(SlotBehaviour s in _slots){
+
         }
     }
 
     void InstantiateCard(CardBase card){
+        int pos = -1;
         GameObject cardCreated;
         switch(card._cardType){
             case CardType.Magic:
@@ -57,8 +101,11 @@ public class InGameDeckSystems : MonoBehaviour
                 cardCreated.GetComponent<CardBehaviour>().SetCanvas(_playArea.GetComponent<Canvas>());
                 cardCreated.transform.SetParent(_playArea.transform);
                 CheckEmptySpace(cardCreated);
-                _currentHand[handCounter] = cardCreated.GetComponent<CardBehaviour>();
-                handCounter++;
+
+                for(int i = 0; i < _currentHand.Length && pos == -1; i++)
+                    if(_currentHand[i] == null)
+                        pos = i;
+                _currentHand[pos] = cardCreated.GetComponent<CardBehaviour>();
                 break;
             case CardType.Tech:
                 cardCreated = Instantiate(_techCard, _tDeckTransform.position, Quaternion.identity);
@@ -66,11 +113,16 @@ public class InGameDeckSystems : MonoBehaviour
                 cardCreated.GetComponent<CardBehaviour>().SetCanvas(_playArea.GetComponent<Canvas>());
                 cardCreated.transform.SetParent(_playArea.transform);
                 CheckEmptySpace(cardCreated);
-                _currentHand[handCounter] = cardCreated.GetComponent<CardBehaviour>();
-                handCounter++;
+
+                for(int i = 0; i < _currentHand.Length && pos == -1; i++)
+                    if(_currentHand[i] == null)
+                        pos = i;
+                _currentHand[pos] = cardCreated.GetComponent<CardBehaviour>();
                 break;
         }
     }
+
+
 
     void CheckEmptySpace(GameObject card){
         bool filled = false;
@@ -86,6 +138,7 @@ public class InGameDeckSystems : MonoBehaviour
     public class DeckClass
     {
         private List<CardBase> inGameDeck = new List<CardBase>();
+        private List<CardBase> discardPile = new List<CardBase>();
         private static System.Random rng = new System.Random();
 
         public DeckClass(Dictionary<string, int> deckReference)
@@ -117,9 +170,18 @@ public class InGameDeckSystems : MonoBehaviour
         {
             int head = inGameDeck.Count - 1;
             CardBase aux = null;
-            if(head >= 0){
+            if (head >= 0)
+            {
                 aux = inGameDeck[head];
                 inGameDeck.RemoveAt(head);
+
+                discardPile.Add(aux);
+            }
+            else {
+                inGameDeck = discardPile;
+                Shuffle();
+
+                discardPile.Clear();
             }
 
             return aux;

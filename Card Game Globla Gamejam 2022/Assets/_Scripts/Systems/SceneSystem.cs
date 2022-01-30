@@ -13,7 +13,9 @@ public class SceneSystem : Singleton<SceneSystem>
     [SerializeField] private GameObject _loaderCanvas;
     [SerializeField] private Image _progressBar;
     private float _target;
-    public async void LoadScene(string sceneName){
+    public void LoadScene(string sceneName){
+        SceneManager.LoadScene(sceneName);}
+        /*
         var scene = SceneManager.LoadSceneAsync(sceneName);
         scene.allowSceneActivation = false;
 
@@ -23,7 +25,7 @@ public class SceneSystem : Singleton<SceneSystem>
 
         do{
             //for testing purposes
-            //await System.Threading.Tasks.Task.Delay(100);
+            await System.Threading.Tasks.Task.Delay(100);
             _target = scene.progress;
         } while (scene.progress < 0.9f);
 
@@ -31,7 +33,7 @@ public class SceneSystem : Singleton<SceneSystem>
 
         scene.allowSceneActivation = true;
         _loaderCanvas.SetActive(false);
-    }
+    }*/
 
     public void ExitGame(){
         Application.Quit();
@@ -39,6 +41,6 @@ public class SceneSystem : Singleton<SceneSystem>
 
     void Update()
     {
-        _progressBar.fillAmount = Mathf.MoveTowards(_progressBar.fillAmount, _target, 3 * Time.deltaTime);
+        //_progressBar.fillAmount = Mathf.MoveTowards(_progressBar.fillAmount, _target, 3 * Time.deltaTime);
     }
 }

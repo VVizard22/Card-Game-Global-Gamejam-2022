@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.EventSystems;
 public class CardBehaviour : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler,
     IDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
+    public static event Action<GameObject> OnCardDeath;
     public CardBase _cardData { get; private set; }
     public RectTransform _slotAssignedTo { get; private set; } = null;
     
@@ -21,6 +23,15 @@ public class CardBehaviour : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     public RectTransform rectTransform { get; private set; }
     private CanvasGroup canvasGroup;
 
+    void Awake(){
+        ExampleGameManager.OnAfterStateChanged += CheckDeath;
+    }
+
+    void OnDestroy()
+    {
+        ExampleGameManager.OnAfterStateChanged -= CheckDeath;
+    }
+
     void Start()
     {
         _cardData = gameObject.GetComponent<CardCreation>()._cardData;
@@ -34,11 +45,16 @@ public class CardBehaviour : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     public void SetSlotAssignedTo(RectTransform slot){
         _slotAssignedTo = slot;
         _onCombatSlot = slot.GetComponent<SlotBehaviour>().CombatSlot;
+        if(_onCombatSlot){
+            SetInteractuable(false);
+        }
     }
     
     public void SetInteractuable(bool interactuable){
         _interactuable = interactuable;
     }
+
+    public void SetOnCombatSlot(bool onCombat) => _onCombatSlot = onCombat;
     
     public void SetFusionOption(bool fusionOption){
         _fusionOption = fusionOption;
@@ -93,11 +109,22 @@ public class CardBehaviour : MonoBehaviour, IPointerDownHandler, IBeginDragHandl
     }
 
     public void DestroyCard(){
+        OnCardDeath?.Invoke(gameObject);
         Destroy(this.gameObject);
     }
 
     public GameObject CloneCard(){
         GameObject newCard = Instantiate(gameObject, transform.position, Quaternion.identity);;
         return newCard;
+    }
+    
+
+    public void CheckDeath(GameState state){
+        if(state == GameState.CheckForDeaths){
+            if(_cardData._baseStats.Health <= 0){
+                DestroyCard();
+            }
+        }
+        ExampleGameManager.Instance.CheckActivation();
     }
 }

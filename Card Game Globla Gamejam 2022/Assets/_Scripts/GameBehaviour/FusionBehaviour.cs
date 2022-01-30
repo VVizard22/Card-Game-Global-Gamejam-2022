@@ -48,8 +48,11 @@ public class FusionBehaviour : MonoBehaviour
     }
 
     public void FusingSuccesfull(){
-        if(_originalCardToFuse != null && _secondaryCardToFuse != null)
+        if(_originalCardToFuse != null && _secondaryCardToFuse != null){
             finishFusion?.Invoke(_originalCardToFuse, _secondaryCardToFuse);
+            Destroy(_secondaryCardToFuse);
+            CancelFusing();
+        }
     }
 
     public void CancelFusing(){
@@ -62,7 +65,7 @@ public class FusionBehaviour : MonoBehaviour
             Destroy(g);
         }
         _fusionCanvas.SetActive(false);
-        ExampleGameManager.Instance.ChangeState(GameState.CardSelect);
+        ExampleGameManager.Instance.ChangeState(GameState.TurnStart);
     }
 
 
@@ -70,7 +73,7 @@ public class FusionBehaviour : MonoBehaviour
         CardType currentType = _cardToFuse.GetComponent<CardCreation>()._cardData._cardType;
         
         for(int i = 0; i < _hand._currentHand.Length; i++){
-            if(_hand._currentHand[i]._cardData._cardType != currentType){
+            if(_hand._currentHand[i] != null  && _hand._currentHand[i]._cardData._cardType != currentType){
                 InstantiateCard(_hand._currentHand[i].gameObject);
             }
         }

@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 /// <summary>
 /// Game manager facil de entender basado en enums, para proyectos mas grandes
@@ -9,10 +9,17 @@ using UnityEngine;
 public class ExampleGameManager : Singleton<ExampleGameManager>{
     public static event Action<GameState> OnBeforeStateChanged;
     public static event Action<GameState> OnAfterStateChanged;
+
     public GameState State { get; private set; }
 
+    [SerializeField] private CardBase[] EnemyCards;
+    [SerializeField] private GameObject EnemySlot;
+    [SerializeField] private GameObject EnemyMagicPrefab;
+    [SerializeField] private GameObject EnemyTechPrefab;
     [SerializeField] private GameObject CombatSlot;
     [SerializeField] private GameObject FusionScene;
+
+    [SerializeField] private AttackButton attackButton;
 
 
     public delegate void GameplayPauseHandler(PauseState newPauseState);
@@ -22,13 +29,15 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
     void Start() {
         SlotBehaviour.StartFusing += StartFusing;
         FusionBehaviour.finishFusion += FinishingFusion;
-        ChangeState(GameState.Starting);
+        CardBehaviour.OnCardDeath += CardDeathCheck;
+        ChangeState(GameState.Start);
+        CreateEnemyCard();
     }
 
-    void OnDestroy()
-    {
+    void OnDestroy(){
         FusionBehaviour.finishFusion -= FinishingFusion;
-        SlotBehaviour.StartFusing -= StartFusing;        
+        SlotBehaviour.StartFusing -= StartFusing;
+        CardBehaviour.OnCardDeath -= CardDeathCheck;      
     }
 
     void FinishingFusion(GameObject _originalFusing, GameObject _secondaryFusing){
@@ -43,8 +52,9 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
         _secondaryFusing.GetComponent<CardBehaviour>()._slotAssignedTo.GetComponent<SlotBehaviour>().EmptySlot();
 
         _originalFusing.GetComponent<CardBehaviour>().ReturnPosition();
-        Destroy(_secondaryFusing);
+        _secondaryFusing.GetComponent<CardBehaviour>().DestroyCard();
         FusionScene.SetActive(false);
+        //ChangeState(GameState.Damage);
     }
 
     void StartFusing(GameObject card){
@@ -66,25 +76,31 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
         OnGamePauseStateChanged?.Invoke(pauseState);
     }
 
+    public void StartAttackState() => ChangeState(GameState.Damage);
+
     public void ChangeState(GameState newState){
-        if(pauseState == PauseState.Pause) return;
+        //if(pauseState == PauseState.Pause) return;
         //if(State == newState) return;
         OnBeforeStateChanged?.Invoke(newState);
 
         State = newState;
 
         switch (newState){
-            case GameState.Starting:
+            case GameState.Start:
                 HandleStarting();
                 break;
             case GameState.Draw:
+                HandleDraw();
                 break;
-            case GameState.CardSelect:
+            case GameState.TurnStart:
                 break;
             case GameState.Fusion:
                 HandleFusion();
                 break;
             case GameState.Damage:
+                HandleDamage();
+                break;
+            case GameState.CheckForDeaths:
                 break;
             case GameState.Win:
                 break;
@@ -95,17 +111,76 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
         }
 
         OnAfterStateChanged?.Invoke(newState);
-        Debug.Log($"New state: {newState}");
+        //Debug.Log($"New state: {newState}");
+    }
+
+    public void CheckActivation(){
+        attackButton.CheckActivation(CombatSlot.GetComponent<SlotBehaviour>());
     }
 
     private void HandleStarting(){
         //Hacer un setup de inicio, sea enviroment, cinematicas, etc.
         //Eventualmente llamar el metoda ChangeState de nuevo con el proximo estado
+        ChangeState(GameState.Draw);
+    }
+
+    private void HandleDraw(){
+        ChangeState(GameState.TurnStart);
     }
 
     private void HandleFusion(){
         FusionScene.SetActive(true);
         //FusionScene.transform.SetAsLastSibling();
+    }
+
+    private void HandleDamage(){
+        CardCreation enemyCard = null;
+        CardCreation allyCard = null;
+
+        enemyCard = EnemySlot.GetComponent<SlotBehaviour>()._objectAttatched.GetComponent<CardCreation>();
+        allyCard = CombatSlot.GetComponent<SlotBehaviour>()._objectAttatched.GetComponent<CardCreation>();
+
+
+        enemyCard._cardData.Damage(allyCard._cardData._baseStats.AttackPower);
+        allyCard._cardData.Damage(enemyCard._cardData._baseStats.AttackPower);
+        attackButton.GetComponent<Button>().interactable = false;
+
+        allyCard.UpdateCardData();
+        enemyCard.UpdateCardData();
+        
+        ChangeState(GameState.CheckForDeaths);
+    }
+
+    private void CreateEnemyCard(){
+        System.Random rnd = new System.Random();
+        CardBase EnemyToCreate = EnemyCards[rnd.Next(EnemyCards.Length)].Duplicate();
+        GameObject EnemyCreated = null;
+        if(EnemyToCreate._cardType == CardType.Magic)
+            EnemyCreated = Instantiate(EnemyMagicPrefab, EnemySlot.transform.position, Quaternion.identity);
+        else if (EnemyToCreate._cardType == CardType.Tech)
+            EnemyCreated = Instantiate(EnemyTechPrefab, EnemySlot.transform.position, Quaternion.identity);
+        EnemyCreated.GetComponent<CardBehaviour>().SetOnCombatSlot(false);
+        EnemyCreated.GetComponent<CardBehaviour>().SetInteractuable(false);
+        EnemyCreated.GetComponent<CardCreation>().SetCardData(EnemyToCreate);
+        EnemyCreated.transform.SetParent(EnemySlot.transform);
+        EnemySlot.GetComponent<SlotBehaviour>().FillSlot(EnemyCreated);
+    }
+
+    public void CardDeathCheck(GameObject objectCard){
+        CardBehaviour card = objectCard.GetComponent<CardBehaviour>();
+        if(card._slotAssignedTo.gameObject == EnemySlot){
+            EnemySlot.GetComponent<SlotBehaviour>().EmptySlot();
+            CreateEnemyCard();
+        }
+        if(card._slotAssignedTo.gameObject == CombatSlot){
+            CombatSlot.GetComponent<SlotBehaviour>().EmptySlot();
+            attackButton.CheckActivation(CombatSlot.GetComponent<SlotBehaviour>());
+            ChangeState(GameState.Draw);
+        }
+
+        
+
+        
     }
 }
 
@@ -116,11 +191,12 @@ public class ExampleGameManager : Singleton<ExampleGameManager>{
 /// </summary>
 [Serializable]
 public enum GameState {
-    Starting,
+    Start,
     Draw,
-    CardSelect,
+    TurnStart,
     Fusion,
     Damage,
+    CheckForDeaths,
     Win,
     Lose
 }

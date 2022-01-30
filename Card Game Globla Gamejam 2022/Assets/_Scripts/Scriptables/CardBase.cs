@@ -24,6 +24,11 @@ public class CardBase : ScriptableObject
         _baseStats.ModifyStats(_stats.Health, _stats.AttackPower);
     }
 
+    public void Damage(int dmg){
+        _stats.Damage(dmg);
+        _baseStats.Damage(dmg);
+    }
+
     public CardBase Duplicate(){
         CardBase toReturn = CreateInstance<CardBase>();
         
@@ -53,7 +58,9 @@ public struct Stats{
         Health += hp;
         AttackPower += ap;
     }
-
+    public void Damage(int dmg){
+        Health -= dmg;
+    }
 
 }
 

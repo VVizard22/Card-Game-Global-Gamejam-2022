@@ -5,11 +5,19 @@ using UnityEngine.EventSystems;
 public class SlotBehaviour : MonoBehaviour, IDropHandler
 {
     public static event Action<GameObject> StartFusing;
+    public static event Action<SlotBehaviour> SlotAssigned;
+    public static event Action<SlotBehaviour> EmptyingSlot;
+
+    [SerializeField] CardType SlotType;
 
     public bool CombatSlot = false;
 
     public GameObject _objectAttatched { get; private set; } = null;
     public Vector2 anchoredPos { get; private set; }
+
+    public CardType GetSlotType(){
+        return SlotType;
+    }
 
     void Awake()
     {
@@ -25,7 +33,7 @@ public class SlotBehaviour : MonoBehaviour, IDropHandler
                 ManageFusion(current);
             }
 
-            if(current.GetComponent<CardBehaviour>() != null && current.GetComponent<CardBehaviour>()._slotAssignedTo != null && !CombatSlot){
+            if(current.GetComponent<CardBehaviour>() != null && current.GetComponent<CardBehaviour>()._slotAssignedTo != null && !CombatSlot && current.GetComponent<CardBehaviour>()._interactuable){
                 current.GetComponent<CardBehaviour>()._slotAssignedTo.gameObject.GetComponent<SlotBehaviour>().EmptySlot();
                 FillSlot(eventData.pointerDrag.gameObject);
                 eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = anchoredPos;
@@ -34,6 +42,8 @@ public class SlotBehaviour : MonoBehaviour, IDropHandler
     }
 
     public void EmptySlot(){
+        SlotAssigned?.Invoke(this);
+        EmptyingSlot?.Invoke(this);
         _objectAttatched = null;
     }
 
@@ -41,6 +51,7 @@ public class SlotBehaviour : MonoBehaviour, IDropHandler
         _objectAttatched = gameObject;
         if (gameObject.GetComponent<CardBehaviour>() != null)
             gameObject.GetComponent<CardBehaviour>().SetSlotAssignedTo(GetComponent<RectTransform>());
+        SlotAssigned?.Invoke(this);
     }
 
     private void ManageFusion(GameObject cardToFuse){
