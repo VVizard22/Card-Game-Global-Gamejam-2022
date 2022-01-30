@@ -140,10 +140,16 @@ public class InGameDeckSystems : MonoBehaviour
         private List<CardBase> inGameDeck = new List<CardBase>();
         private List<CardBase> discardPile = new List<CardBase>();
         private static System.Random rng = new System.Random();
+        private Dictionary<string, int> deckInfo;
 
-        public DeckClass(Dictionary<string, int> deckReference)
-        {
-            foreach (KeyValuePair<string, int> entry in deckReference)
+        public DeckClass(Dictionary<string, int> deckReference) {
+            deckInfo = deckReference;
+
+            fillDeck();
+        }
+
+        private void fillDeck() {
+            foreach (KeyValuePair<string, int> entry in deckInfo)
             {
                 for (int i = 1; i <= entry.Value; i++)
                 {
@@ -168,7 +174,7 @@ public class InGameDeckSystems : MonoBehaviour
 
         public CardBase Draw()
         {
-            int head = inGameDeck.Count - 1;
+            int head = inGameDeck.Count -1;
             CardBase aux = null;
             if (head >= 0)
             {
@@ -176,12 +182,8 @@ public class InGameDeckSystems : MonoBehaviour
                 inGameDeck.RemoveAt(head);
 
                 discardPile.Add(aux);
-            }
-            else {
-                inGameDeck = discardPile;
-                Shuffle();
-
-                discardPile.Clear();
+            }else {
+                fillDeck();
             }
 
             return aux;
