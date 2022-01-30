@@ -86,6 +86,7 @@ public class InGameDeckSystems : MonoBehaviour
     public class DeckClass
     {
         private List<CardBase> inGameDeck = new List<CardBase>();
+        private List<CardBase> discardPile = new List<CardBase>();
         private static System.Random rng = new System.Random();
 
         public DeckClass(Dictionary<string, int> deckReference)
@@ -117,9 +118,18 @@ public class InGameDeckSystems : MonoBehaviour
         {
             int head = inGameDeck.Count - 1;
             CardBase aux = null;
-            if(head >= 0){
+            if (head >= 0)
+            {
                 aux = inGameDeck[head];
                 inGameDeck.RemoveAt(head);
+
+                discardPile.Add(aux);
+            }
+            else {
+                inGameDeck = discardPile;
+                Shuffle();
+
+                discardPile.Clear();
             }
 
             return aux;
